@@ -2,11 +2,20 @@
 	margin: 0;
 }
 body {
-	
+	max-width: 1200px;
+	margin: 0 auto;
 }
 header{
 	background-color: gold;
 }
 header h1{
 	text-align: center;
+}
+main{
+
+}
+main canvas{
+	width: 400px;
+	height: 700px;
+	float: left;
 }
