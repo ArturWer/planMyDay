@@ -12,10 +12,19 @@ header h1{
 	text-align: center;
 }
 main{
-
+	padding-top: 10px;
+	margin: 10px;
 }
 main canvas{
-	width: 400px;
+	width: 780px;
 	height: 700px;
 	float: left;
+	background: #4270ce;
+}
+main form{
+	width: 390px;
+	height: 700px;
+	border: 1px solid gray;
+	border-radius: 8px;
+	float: right;
 }
