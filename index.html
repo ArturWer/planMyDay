@@ -14,12 +14,28 @@
 			
 		</canvas>
 		<form action="#">
-			<h2>Enter new task:</h2>
-			<label for="newTaskName">Name: </label>
-			<input type="text" id="newTaskName" name="userNewTaskName">
-			<button type="reset">Reset</button>
-			<button>Add task</button>
-			<textarea name="userTasksList"></textarea>
+			<section>
+				<h2>Enter new task:</h2>
+				<p>
+					<label for="newTaskName">Name: </label>
+					<input type="text" id="newTaskName" name="userNewTaskName">
+				</p>
+				<p>
+					<button type="reset">Reset</button>
+					<button>Add task</button>
+				</p>
+				<textarea name="userTasksList"></textarea>
+			</section>
+			<section>
+				<h2>Tasks history:</h2>
+				<select id="userHistoryTask">
+					<option value="">--History is empty--</option>
+
+				</select>
+				<p>
+					<button type="reset">Reset history</button>
+				</p>
+			</section>
 		</form>
 	</main>
 	<footer>
