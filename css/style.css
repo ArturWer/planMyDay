@@ -4,12 +4,16 @@
 body {
 	max-width: 1200px;
 	margin: 0 auto;
+	font-size: 1.2rem;
 }
 header{
 	background-color: gold;
 }
 header h1{
 	text-align: center;
+}
+p{
+	margin-top: 7px;
 }
 main{
 	padding-top: 10px;
@@ -27,4 +31,21 @@ main form{
 	border: 1px solid gray;
 	border-radius: 8px;
 	float: right;
+}
+main form section {
+	margin-top: 15px;
+	padding-left: 21px;
+}
+main form section button {
+	margin-top: 10px;
+}
+main form section select {
+	width: 200px;
+}
+/*for padding paragraphs with buttons*/ 
+.button{
+	padding-left: 105px;
+}
+.twoButtons{
+	padding-left: 75px;
 }
