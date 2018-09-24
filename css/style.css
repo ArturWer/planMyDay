@@ -49,3 +49,15 @@ main form section select {
 .twoButtons{
 	padding-left: 75px;
 }
+
+main form label{
+	display: inline-block;
+}
+main form #sleepingTime{
+	width: 2.5em;
+}
+main form section canvas {
+	width: 300px;
+	height: 300px;
+	margin-top: 10px; 
+}
