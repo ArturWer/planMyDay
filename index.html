@@ -23,10 +23,11 @@
 						<input type="text" id="newTaskName" name="userNewTaskName" autofocus required>
 					</p>
 					<p>
-						<label for="taskTime">Time for task: </label>
-						<input type="number" id="taskTime" name="userTaskTime" 
+						<label for="taskTimeHours">Time for task: </label>
+						<input type="number" id="taskTimeHours" name="userTaskTime" 
 								min="0" max="7" placeholder="0" step="1" value="0">
-						<input type="number" name="userTaskTimeMinutes" min="0" max="55" placeholder="0 Minutes" step="5" value="0">
+						<input type="number" id="taskTimeMinutes" name="userTaskTimeMinutes" min="0" max="55"
+								placeholder="0 Minutes" step="5" value="0">
 					</p>
 					<p class="twoButtons">
 						<button id="clearButton">Clear</button>

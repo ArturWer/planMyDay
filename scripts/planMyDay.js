@@ -14,16 +14,25 @@ $clearButton.on('click', function(event){
 //getting new user's task
 $addNewTask.on('click', function(event){
 	let newTaskValue = document.getElementById('newTaskName').value;
+	let newTaskHour = document.getElementById('taskTimeHours').value;
+	let newTimeMinutes = document.getElementById('taskTimeMinutes').value;
+	let newTaskObject = new Task (newTaskValue,newTaskHour,newTimeMinutes);
+	dayTasks.push(newTaskObject);
 	clearNewTask();
 	if ($('[class="empty"]')) {
 		$('#userHistoryTask').html(`<option>${newTaskValue}</option>`);
 	}
 
-	console.log(newTaskValue);
+	console.log(newTaskObject);
 });
 
 //clear newTask text element
 function clearNewTask(){
 	document.getElementById('newTaskName').value="";
 };
-//сделать конструктор объектов новой задачи на день. name, timeDuration
+//making new task object constructor
+function Task(name, hours, minutes){
+	this.name = name;
+	this.hours = hours;
+	this.minutes = minutes;
+}
