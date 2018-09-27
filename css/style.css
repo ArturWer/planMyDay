@@ -5,6 +5,7 @@ body {
 	max-width: 1200px;
 	margin: 0 auto;
 	font-size: 1.2rem;
+	font-family: 'Fira Sans', sans-serif;
 }
 header{
 	background-color: gold;
@@ -52,6 +53,10 @@ main form section select {
 
 main form label{
 	display: inline-block;
+}
+main form legend{
+	background-color: black;
+	color: white;
 }
 main form #sleepingTime{
 	width: 2.5em;

@@ -1,5 +1,7 @@
 let $addNewTask = $('#addNewTask'),
-	$clearButton = $('#clearButton');
+	$clearButton = $('#clearButton')
+	dayTasks = [];//day task array for canvas etc.
+
 
 //Stop sending form
 $('button').on('click', function(event){
@@ -24,3 +26,4 @@ $addNewTask.on('click', function(event){
 function clearNewTask(){
 	document.getElementById('newTaskName').value="";
 };
+//сделать конструктор объектов новой задачи на день. name, timeDuration
