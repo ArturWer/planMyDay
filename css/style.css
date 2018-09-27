@@ -58,8 +58,11 @@ main form legend{
 	background-color: black;
 	color: white;
 }
-main form #sleepingTime{
+main form [type="number"]{
 	width: 2.5em;
+}
+main form fieldset {
+	width: 319px;
 }
 main form section canvas {
 	width: 300px;
