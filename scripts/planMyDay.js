@@ -23,7 +23,7 @@ $addNewTask.on('click', function(event){
 		$('#userHistoryTask').html(`<option>${newTaskValue}</option>`);
 	}
 
-	console.log(newTaskObject);
+	console.log(dayTasks);
 });
 
 //clear newTask text element
