@@ -36,3 +36,11 @@ function Task(name, hours, minutes){
 	this.hours = hours;
 	this.minutes = minutes;
 }
+//Calculation NONsleeping time in the day
+ $('#sleepingTimeHours, #userSleepingTimeMinutes').on('change', function(){
+ 	console.log('Change');
+ });
+ //draw free time in the day
+ function drawFreeTime(){
+ 	
+ };
