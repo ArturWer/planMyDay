@@ -19,9 +19,10 @@ $addNewTask.on('click', function(event){
 	let newTaskObject = new Task (newTaskValue,newTaskHour,newTimeMinutes);
 	dayTasks.push(newTaskObject);
 	clearNewTask();
-	if ($('[class="empty"]')) {
-		$('#userHistoryTask').html(`<option>${newTaskValue}</option>`);
-	}
+	
+		$('#userTasksList').prepend(`<option>${newTaskObject.name} 
+			(${newTaskObject.hours} h ${newTaskObject.minutes} minutes.)</option>`);
+	
 
 	console.log(dayTasks);
 });

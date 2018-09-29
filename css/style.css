@@ -40,8 +40,8 @@ main form section {
 main form section button {
 	margin-top: 10px;
 }
-main form section select {
-	width: 200px;
+main form .hidden{
+	display: none;
 }
 /*for padding paragraphs with buttons*/ 
 .button{
