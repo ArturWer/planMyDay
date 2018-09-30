@@ -73,4 +73,6 @@ main form section canvas {
 .done{
 	text-decoration: line-through;
 	color: silver;
+	list-style-image: url("../img/Done_17w.png");
+	text-align: right;
 }
