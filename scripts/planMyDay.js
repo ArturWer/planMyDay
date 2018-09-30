@@ -21,8 +21,8 @@ $addNewTask.on('click', function(event){
 	clearNewTask();
 	if (newTaskValue) {
 		$('#userTasksList').fadeIn(1500);
-		$('#userTasksList ul').append(`<option>${newTaskObject.name} 
-			(${newTaskObject.hours} h ${newTaskObject.minutes} min)</option>`);
+		$('#userTasksList ul').append(`<li>${newTaskObject.name} 
+			(${newTaskObject.hours} h ${newTaskObject.minutes} min)</li>`);
 	};
 
 	console.log(dayTasks);
@@ -38,6 +38,12 @@ function Task(name, hours, minutes){
 	this.hours = hours;
 	this.minutes = minutes;
 }
+//addin class .done when user click on the task
+$('#userTasksList').on('click', function(event){
+	target = event.target;
+	$(target).addClass('done');
+});
+
 //Calculation NONsleeping time in the day
  $('#sleepingTimeHours, #userSleepingTimeMinutes').on('change', function(){
  	console.log('Change');
