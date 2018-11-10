@@ -9,6 +9,8 @@ body {
 }
 header{
 	background-color: gold;
+	box-shadow: .1rem .1rem .3rem black;
+	border-radius: .3rem;
 }
 header h1{
 	text-align: center;
@@ -17,21 +19,19 @@ p{
 	margin-top: 7px;
 }
 main{
+	display: flex;
 	padding-top: 10px;
 	margin: 10px;
 }
 main canvas{
-	width: 780px;
-	height: 700px;
-	float: left;
+	flex: 2;
 	background: #4270ce;
 }
 main form{
-	width: 390px;
-	height: 700px;
+	flex: 1;
+	margin-left: .2rem;
 	border: 1px solid gray;
 	border-radius: 8px;
-	float: right;
 }
 main form section {
 	margin-top: 15px;
@@ -62,10 +62,10 @@ main form [type="number"]{
 	width: 2.5em;
 }
 main form fieldset {
-	width: 319px;
+	max-width: 319px;
 }
 main form section canvas {
-	width: 270px;
+	max-width: 270px;
 	height: 270px;
 	margin-top: 10px; 
 }
