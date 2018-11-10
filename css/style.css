@@ -27,20 +27,20 @@ main canvas{
 	flex: 2;
 	background: #4270ce;
 }
-main form{
+main .adding{
 	flex: 1;
 	margin-left: .2rem;
 	border: 1px solid gray;
 	border-radius: 8px;
 }
-main form section {
+main .adding section {
 	margin-top: 15px;
 	padding-left: 21px;
 }
-main form section button {
+main .adding section button {
 	margin-top: 10px;
 }
-main form .hidden{
+main .adding .hidden{
 	display: none;
 }
 /*for padding paragraphs with buttons*/ 
@@ -51,20 +51,20 @@ main form .hidden{
 	padding-left: 75px;
 }
 
-main form label{
+main .adding label{
 	display: inline-block;
 }
-main form legend{
+main .adding legend{
 	background-color: black;
 	color: white;
 }
-main form [type="number"]{
+main .adding [type="number"]{
 	width: 2.5em;
 }
-main form fieldset {
+main .adding fieldset {
 	max-width: 319px;
 }
-main form section canvas {
+main .adding section canvas {
 	max-width: 270px;
 	height: 270px;
 	margin-top: 10px; 

@@ -8,11 +8,11 @@ function Task (name, duration){
 }
 
 btnAddTask.addEventListener('click', function(){
-	console.log("Click newTask");
+	let name = document.getElementById('newTaskName').textContent;
 }, false);
 
 btnClear.addEventListener('click', function(){
-	document.getElementById('newTaskName').value="";
+	document.getElementById('newTaskName').textContent = "";
 }, false);
 
 //getting new user's task
