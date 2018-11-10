@@ -1,8 +1,10 @@
 let btnAddTask = document.querySelector(".addTask"),
 	btnClear = document.querySelector(".clearButton"),
 	newTasksField = document.querySelector(".newTasks"),
-	dayShow = document.querySelector(".dayShow");
+	dayShow = document.querySelector(".dayShow"),
+	taskList = document.querySelector(".taskList");
 	day = [];
+const minInDay = 24 * 60;
 
 function Task (name, hours, minutes){
 	this.name = name,
@@ -14,13 +16,32 @@ function clearTask (){
 	document.querySelector(".minutes").value = 0;
 }
 function showTasks(){
-	dayShow.innerHTML = "";
+	taskList.innerHTML = "";
 	for (let i = day.length - 1; i >= 0; i--) {
 		let el = document.createElement("p");
 		let text = document.createTextNode(`${day[i].name} ${day[i].duration[0]}h ${day[i].duration[1]} minutes`);
 		el.appendChild(text);
-		dayShow.appendChild(el);
+		taskList.appendChild(el);
 	}
+}
+function countTime(){
+	let sleepingTimeHours = document.getElementById("sleepingHours").value;
+	let sleepingMinutes = document.querySelector(".sleepingMinutes").value;
+	let minutes = convertToMinutes(sleepingTimeHours, sleepingMinutes);
+	if (minutes) {
+		let freeTime = minInDay - minutes;
+		let freeTimeHours = Math.floor(freeTime/60);
+		let freeTimeMinutes = freeTime%60;
+		let msg = `You have free time for planning: ${freeTimeHours} h ${freeTimeMinutes} m`
+		document.querySelector(".dayShow h2").textContent = msg;
+	}
+	
+}
+function convertToMinutes(hours, minutes){
+	if (!isNaN(hours) && !isNaN(minutes)) {
+		return Number(hours) * 60 + Number(minutes);
+	}
+	return false;
 }
 
 btnAddTask.addEventListener('click', function(){
@@ -35,6 +56,6 @@ btnAddTask.addEventListener('click', function(){
 }, false);
 
 btnClear.addEventListener('click', clearTask, false);
-
+countTime();
 
 
