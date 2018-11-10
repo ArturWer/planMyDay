@@ -18,12 +18,21 @@
     </canvas>
   </section>
   <section class="adding">
+  	<section class="timeSleeping">
+		<h2>How much do you sleep?</h2>
+		<p>
+			<label for="sleepingHours">Hours: </label>
+			<input type="number" id="sleepingHours" name="Sleeping" 
+					min="3" max="14" placeholder="8" step="1" value="8">
+			<input type="number" class="sleepingMinutes" name="sleepingMinutes" min="0" max="55" placeholder="0 Minutes" step="5" value="0">
+		</p>
+	</section>
 	<section>
 		<fieldset class="newTasks">
 			<legend>Enter new task:</legend>
 			<p>
 				<label for="newTaskName">Name: </label>
-				<input type="text" id="newTaskName" name="userNewTaskName" autofocus required>
+				<input type="text" id="newTaskName" name="userNewTaskName" required>
 			</p>
 			<p>
 				<label for="hours">Time for task: </label>
@@ -47,18 +56,6 @@
 				<button type="reset">Reset tasks</button>
 			</p>
 		</fieldset>
-	</section>
-	<section>
-		<h2>How much do you sleep?</h2>
-		<p>
-			<label for="sleepingHours">Hours: </label>
-			<input type="number" id="sleepingHours" name="userSleeping" 
-					min="3" max="14" placeholder="8" step="1" value="8">
-			<input type="number" class="sleepingMinutes" name="userSleepingMinutes" min="0" max="55" placeholder="0 Minutes" step="5" value="0">
-		</p>
-		<canvas class="freeTimeCanvas">
-			
-		</canvas>
 	</section>
   </section>
  </main>

@@ -2,7 +2,9 @@ let btnAddTask = document.querySelector(".addTask"),
 	btnClear = document.querySelector(".clearButton"),
 	newTasksField = document.querySelector(".newTasks"),
 	dayShow = document.querySelector(".dayShow"),
-	taskList = document.querySelector(".taskList");
+	taskList = document.querySelector(".taskList"),
+	sleepingHours = document.getElementById("sleepingHours"),
+	sleepingMinutes = document.querySelector(".sleepingMinutes");
 	day = [];
 const minInDay = 24 * 60;
 
@@ -56,6 +58,13 @@ btnAddTask.addEventListener('click', function(){
 }, false);
 
 btnClear.addEventListener('click', clearTask, false);
+
+sleepingHours.onchange = countTime;
+sleepingMinutes.onchange = countTime;
+/*for (let i = 0; timeSleeping.length - 1; i++) {
+	console.log(timeSleeping);
+	//timeSleeping[i].addEventListener("change", countTime, false);
+}*/
 countTime();
 
 
