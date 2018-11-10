@@ -1,16 +1,20 @@
-let $addNewTask = $('#addNewTask'),
-	$clearButton = $('#clearButton')
-	dayTasks = [];//day task array for canvas etc.
+let btnAddTask = document.querySelector(".addTask"),
+	btnClear = document.querySelector(".clearButton"),
+	newTasksField = document.querySelector(".newTasks");
 
+function Task (name, duration){
+	name = this.name,
+	duration = this.duration;
+}
 
-//Stop sending form
-$('button').on('click', function(event){
-	event.preventDefault();
-});
+btnAddTask.addEventListener('click', function(){
+	console.log("Click newTask");
+}, false);
 
-$clearButton.on('click', function(event){
-	clearNewTask();
-});
+btnClear.addEventListener('click', function(){
+	document.getElementById('newTaskName').value="";
+}, false);
+
 //getting new user's task
 $addNewTask.on('click', function(event){
 	let newTaskValue = document.getElementById('newTaskName').value;
@@ -28,16 +32,6 @@ $addNewTask.on('click', function(event){
 	console.log(dayTasks);
 });
 
-//clear newTask text element
-function clearNewTask(){
-	document.getElementById('newTaskName').value="";
-};
-//making new task object constructor
-function Task(name, hours, minutes){
-	this.name = name;
-	this.hours = hours;
-	this.minutes = minutes;
-}
 //addin class .done when user click on the task
 $('#userTasksList').on('click', function(event){
 	target = event.target;
@@ -52,3 +46,4 @@ $('#userTasksList').on('click', function(event){
  function drawFreeTime(){
  	
  };
+
