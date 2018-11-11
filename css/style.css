@@ -32,6 +32,11 @@ main .dayShow h2 span{
 	color: white;
 	text-shadow: .1rem .1rem .3rem silver;
 }
+main .dayShow .taskList p{
+	text-align: center;
+	border: 2px dashed black;
+	border-radius: 3rem;
+}
 main .adding{
 	flex: 1;
 	margin-left: .2rem;

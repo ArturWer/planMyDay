@@ -23,6 +23,9 @@ function showTasks(){
 		let el = document.createElement("p");
 		let text = document.createTextNode(`${day[i].name} ${day[i].duration[0]}h ${day[i].duration[1]} minutes`);
 		el.appendChild(text);
+		let padding = countPaddingInTasks (day[i].duration[0], day[i].duration[1]);
+		el.style.padding = padding;
+		console.log(typeof(padding));
 		taskList.appendChild(el);
 	}
 }
@@ -59,6 +62,9 @@ function converToHoursAndMinutes (minutes){
 		return t;
 	}
 	return false;
+}
+function countPaddingInTasks(hours, minutes){
+	return `${hours * 3 + minutes}px`;
 }
 
 btnAddTask.addEventListener('click', function(){
