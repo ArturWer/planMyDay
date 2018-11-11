@@ -21,7 +21,7 @@ function showTasks(){
 	taskList.innerHTML = "";
 	for (let i = day.length - 1; i >= 0; i--) {
 		let el = document.createElement("p");
-		let text = document.createTextNode(`${day[i].name} ${day[i].duration[0]}h ${day[i].duration[1]} minutes`);
+		let text = document.createTextNode(`${day[i].name} ${day[i].duration[0]}h ${day[i].duration[1]} m`);
 		el.appendChild(text);
 		let padding = countPaddingInTasks (day[i].duration[0], day[i].duration[1]);
 		el.style.padding = padding;

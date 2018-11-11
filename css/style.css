@@ -8,9 +8,10 @@ body {
 	font-family: 'Fira Sans', sans-serif;
 }
 header{
-	background-color: gold;
+	background-color: #601676;
 	box-shadow: .1rem .1rem .3rem black;
 	border-radius: .3rem;
+	color: white;
 }
 header h1{
 	text-align: center;
