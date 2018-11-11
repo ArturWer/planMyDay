@@ -4,7 +4,7 @@ let btnAddTask = document.querySelector(".addTask"),
 	dayShow = document.querySelector(".dayShow"),
 	taskList = document.querySelector(".taskList"),
 	sleepingHours = document.getElementById("sleepingHours"),
-	sleepingMinutes = document.querySelector(".sleepingMinutes");
+	sleepingMinutes = document.querySelector(".sleepingMinutes"),
 	day = [];
 const minInDay = 24 * 60;
 
@@ -32,12 +32,18 @@ function countTime(){
 	let minutes = convertToMinutes(sleepingTimeHours, sleepingMinutes);
 	if (minutes) {
 		let freeTime = minInDay - minutes;
-		let freeTimeHours = Math.floor(freeTime/60);
-		let freeTimeMinutes = freeTime%60;
-		let msg = `${freeTimeHours} h ${freeTimeMinutes} m`
+		if (day.length>0) {//if is user's tasks
+			let minutesDaySum = 0;
+			for (var i = day.length - 1; i >= 0; i--) {
+				minutesDaySum += convertToMinutes(day[i].duration[0], day[i].duration[1]);
+			}
+			freeTime -= minutesDaySum;
+			console.log(`Всего в задачах минут: ${minutesDaySum}`);
+		}
+		let freeTimeArray = converToHoursAndMinutes(freeTime);
+		let msg = `${freeTimeArray[0]} h ${freeTimeArray[1]} m`
 		document.querySelector(".dayShow h2 span").textContent = msg;
-	}
-	
+	}	
 }
 function convertToMinutes(hours, minutes){
 	if (!isNaN(hours) && !isNaN(minutes)) {
@@ -63,6 +69,7 @@ btnAddTask.addEventListener('click', function(){
 	day.push(newTaskObj);
 	console.log(day);
 	clearTask();
+	countTime();
 	showTasks();
 }, false);
 
