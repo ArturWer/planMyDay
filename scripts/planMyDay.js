@@ -46,7 +46,13 @@ function convertToMinutes(hours, minutes){
 	return false;
 }
 function converToHoursAndMinutes (minutes){
-
+	if(!isNaN(minutes)){
+		let t = [];
+		t[0] = Math.floor(minutes/60);
+		t[1] = Math.floor(minutes%60);
+		return t;
+	}
+	return false;
 }
 
 btnAddTask.addEventListener('click', function(){
