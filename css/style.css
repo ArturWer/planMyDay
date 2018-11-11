@@ -28,6 +28,10 @@ main .dayShow{
 	background: #24ea50;
 	padding: 1rem;
 }
+main .dayShow h2 span{
+	color: white;
+	text-shadow: .1rem .1rem .3rem silver;
+}
 main .adding{
 	flex: 1;
 	margin-left: .2rem;

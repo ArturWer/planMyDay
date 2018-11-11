@@ -34,8 +34,8 @@ function countTime(){
 		let freeTime = minInDay - minutes;
 		let freeTimeHours = Math.floor(freeTime/60);
 		let freeTimeMinutes = freeTime%60;
-		let msg = `You have free time for planning: ${freeTimeHours} h ${freeTimeMinutes} m`
-		document.querySelector(".dayShow h2").textContent = msg;
+		let msg = `${freeTimeHours} h ${freeTimeMinutes} m`
+		document.querySelector(".dayShow h2 span").textContent = msg;
 	}
 	
 }
@@ -44,6 +44,9 @@ function convertToMinutes(hours, minutes){
 		return Number(hours) * 60 + Number(minutes);
 	}
 	return false;
+}
+function converToHoursAndMinutes (minutes){
+
 }
 
 btnAddTask.addEventListener('click', function(){
@@ -61,10 +64,7 @@ btnClear.addEventListener('click', clearTask, false);
 
 sleepingHours.onchange = countTime;
 sleepingMinutes.onchange = countTime;
-/*for (let i = 0; timeSleeping.length - 1; i++) {
-	console.log(timeSleeping);
-	//timeSleeping[i].addEventListener("change", countTime, false);
-}*/
+
 countTime();
 
 
