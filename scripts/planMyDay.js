@@ -64,7 +64,7 @@ function converToHoursAndMinutes (minutes){
 	return false;
 }
 function countPaddingInTasks(hours, minutes){
-	return `${hours * 3 + minutes}px`;
+	return `${Math.floor(hours * 10 + minutes/10)}px`;
 }
 
 btnAddTask.addEventListener('click', function(){

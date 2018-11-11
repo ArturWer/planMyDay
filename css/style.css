@@ -34,8 +34,9 @@ main .dayShow h2 span{
 }
 main .dayShow .taskList p{
 	text-align: center;
-	border: 2px dashed black;
-	border-radius: 3rem;
+	border-radius: .5rem;
+	box-shadow: .1rem .1rem .3rem silver;
+	background-image: linear-gradient(to bottom right, rgba(255, 255, 255, 0.5),rgb(239, 239, 239));
 }
 main .adding{
 	flex: 1;
