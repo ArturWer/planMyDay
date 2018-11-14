@@ -7,6 +7,8 @@ let btnAddTask = document.querySelector(".addTask"),
 	sleepingMinutes = document.querySelector(".sleepingMinutes"),
 	day = [];
 const minInDay = 24 * 60;
+let canvas = document.querySelector("canvas"),
+	ctx = canvas.getContext("2d");
 
 function Task (name, hours, minutes){
 	this.name = name,
@@ -66,6 +68,11 @@ function converToHoursAndMinutes (minutes){
 function countPaddingInTasks(hours, minutes){
 	return `${Math.floor(hours * 10 + minutes/10)}px`;
 }
+function drawInCanvas(){
+	let minSide;
+	(canvas.width < canvas.height) ? minSide = canvas.width : minSide = canvas.height;
+	console.log(`minSide of canvas is: ${minSide}`);
+}
 
 btnAddTask.addEventListener('click', function(){
 	let name = document.getElementById('newTaskName').value,
@@ -73,7 +80,6 @@ btnAddTask.addEventListener('click', function(){
 		minutes = document.querySelector(".minutes").value;
 	let newTaskObj = new Task(name, hours, minutes);
 	day.push(newTaskObj);
-	console.log(day);
 	clearTask();
 	countTime();
 	showTasks();
@@ -87,3 +93,4 @@ sleepingMinutes.onchange = countTime;
 countTime();
 
 
+drawInCanvas();
