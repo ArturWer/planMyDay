@@ -32,6 +32,9 @@ function showTasks(){
 function countTime(){
 	let sleepingTimeHours = document.getElementById("sleepingHours").value;
 	let sleepingMinutes = document.querySelector(".sleepingMinutes").value;
+	sleepingTimeHours = Number(sleepingTimeHours);
+	sleepingMinutes = Number(sleepingMinutes);
+	correctMinutesChanging (sleepingTimeHours, sleepingMinutes);
 	let minutes = convertToMinutes(sleepingTimeHours, sleepingMinutes);
 	if (minutes) {
 		let freeTime = minInDay - minutes;
@@ -50,6 +53,15 @@ function countTime(){
 		document.querySelector(".dayShow h2 span").textContent = msg;
 		drawInCanvas(percentSleepTime);
 	}	
+}
+function correctMinutesChanging (sleepingTimeHours, sleepingMinutes){
+	if (sleepingMinutes === 60) {
+		document.getElementById("sleepingHours").value = sleepingTimeHours+1;
+		document.querySelector(".sleepingMinutes").value = 0;
+	} else if (sleepingMinutes === -5) {
+		document.getElementById("sleepingHours").value = sleepingTimeHours-1;
+		document.querySelector(".sleepingMinutes").value = 55;
+	}
 }
 function convertToMinutes(hours, minutes){
 	if (!isNaN(hours) && !isNaN(minutes)) {
