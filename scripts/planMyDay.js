@@ -35,6 +35,8 @@ function countTime(){
 	let minutes = convertToMinutes(sleepingTimeHours, sleepingMinutes);
 	if (minutes) {
 		let freeTime = minInDay - minutes;
+		let percentSleepTime = Math.floor((minutes/minInDay)*100);
+		console.log(percentSleepTime);
 		if (day.length>0) {//if is user's tasks
 			let minutesDaySum = 0;
 			for (var i = day.length - 1; i >= 0; i--) {
@@ -46,6 +48,7 @@ function countTime(){
 		let freeTimeArray = converToHoursAndMinutes(freeTime);
 		let msg = `${freeTimeArray[0]} h ${freeTimeArray[1]} m`
 		document.querySelector(".dayShow h2 span").textContent = msg;
+		drawInCanvas(percentSleepTime);
 	}	
 }
 function convertToMinutes(hours, minutes){
@@ -70,7 +73,7 @@ function drawCircle (ctx, x, y, color, size, fill){
 	ctx.arc(x,y, size, 0, Math.PI*2);
 	(fill) ? ctx.fill() : ctx.stroke();
 }
-function drawInCanvas(){
+function drawInCanvas(percentSleepTime){
 	let canvas = document.querySelector("canvas");
 	if(canvas.getContext) {
 		ctx = canvas.getContext("2d");
@@ -80,8 +83,17 @@ function drawInCanvas(){
 		(width < height) ? minSide = width : minSide = height;
 		console.log(`canvas.width = ${canvas.width}, canvas.height = ${canvas.height}`);
 		console.log(`minSide of canvas is: ${minSide}`);
-
-		drawCircle (ctx, 40, 60, null, 60, false);
+		ctx.clearRect(0, 0, width, height);
+		ctx.fillStyle = "rgba(255, 255, 255, 1)";
+		ctx.fillRect(width*2/3, 0, width, height);
+		ctx.fill();
+		/* draw sleep time rect*/
+		ctx.fillStyle = "gold";
+		ctx.fillRect(width*2/3, (height-height*percentSleepTime/100), width, height);
+		console.log(height-height*percentSleepTime/100);
+		ctx.fill();
+		ctx.moveTo (0, 0);
+		drawCircle (ctx, 40, 60, null, 60, true);
 	}
 	else canvas.textContent = "Use modern browser's version";
 }
@@ -121,4 +133,3 @@ sleepingMinutes.onchange = countTime;
 countTime();
 
 
-drawInCanvas();
