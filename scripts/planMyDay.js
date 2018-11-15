@@ -139,8 +139,8 @@ btnAddTask.addEventListener('click', function(){
 
 btnClear.addEventListener('click', clearTask, false);
 
-sleepingHours.onchange = countTime;
-sleepingMinutes.onchange = countTime;
+sleepingHours.oninput = countTime;
+sleepingMinutes.oninput = countTime;
 
 countTime();
 
