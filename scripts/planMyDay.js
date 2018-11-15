@@ -69,9 +69,28 @@ function countPaddingInTasks(hours, minutes){
 	return `${Math.floor(hours * 10 + minutes/10)}px`;
 }
 function drawInCanvas(){
-	let minSide;
-	(canvas.width < canvas.height) ? minSide = canvas.width : minSide = canvas.height;
+	let minSide,
+		width = canvas.width,
+		height = canvas.height;
+	(width < height) ? minSide = width : minSide = height;
+	console.log(`canvas.width = ${canvas.width}, canvas.height = ${canvas.height}`);
 	console.log(`minSide of canvas is: ${minSide}`);
+}
+function random(min,max) {
+  var num = Math.floor(Math.random()*(max-min)) + min;
+  return num;
+}
+function Ball(x, y, color, size) {
+  this.x = x;
+  this.y = y;
+  this.color = color;
+  this.size = size;
+}
+Ball.prototype.draw = function() {
+  ctx.beginPath();
+  ctx.fillStyle = this.color;
+  ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI);
+  ctx.fill();
 }
 
 btnAddTask.addEventListener('click', function(){
