@@ -38,6 +38,7 @@ function countTime(){
 		correctMinutesChanging (sleepingMinutes);
 	if (minutes) {
 		let freeTime = minInDay - minutes;
+		setAvailableTime(freeTime);
 		let percentSleepTime = Math.floor((minutes/minInDay)*100);
 		console.log(`percentSleepTime ${percentSleepTime}`);
 		if (day.length>0) {//if is user's tasks
@@ -88,6 +89,13 @@ function converToHoursAndMinutes (minutes){
 		return t;
 	}
 	return false;
+}
+function setAvailableTime(freeTime){
+	console.log(`freeTime ${freeTime} minutes`);
+	let freeTimeArray = converToHoursAndMinutes(freeTime);
+	let h = freeTimeArray[0];
+	let m = freeTimeArray[1];
+	document.getElementById("hoursNewTask").setAttribute("max", h);
 }
 function countPaddingInTasks(hours, minutes){
 	return `${Math.floor(hours * 10 + minutes/10)}px`;
