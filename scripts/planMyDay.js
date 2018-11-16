@@ -54,10 +54,24 @@ function countTime(){
 	}	
 }
 function correctMinutesChanging (sleepingMinutes){
+	let hours = Number(sleepingHours.value);
+	let max = sleepingHours.getAttribute("max");
+	let min = sleepingHours.getAttribute("min");
+	max = Number(max);
+	min = Number(min);
+
 	if (sleepingMinutes === 60) {
-		document.querySelector(".sleepingMinutes").value = 0;		
+		document.querySelector(".sleepingMinutes").value = 0;
+		if (hours < max) {
+			hours++;
+			sleepingHours.value = hours;
+		}
 	} else if (sleepingMinutes === -5) {
 		document.querySelector(".sleepingMinutes").value = 55;
+		if (hours > min) {
+			hours--;
+			sleepingHours.value = hours;
+		}
 	}
 }
 function convertToMinutes(hours, minutes){
