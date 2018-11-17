@@ -17,17 +17,6 @@ function clearTask (){
 	document.getElementById("hoursNewTask").value = 0;
 	document.querySelector(".minutes").value = 0;
 }
-function showTasks(){
-	taskList.innerHTML = "";
-	for (let i = day.length - 1; i >= 0; i--) {
-		let el = document.createElement("p");
-		let text = document.createTextNode(`${day[i].name} ${day[i].duration[0]}h ${day[i].duration[1]} m`);
-		el.appendChild(text);
-		let padding = countPaddingInTasks (day[i].duration[0], day[i].duration[1]);
-		el.style.padding = padding;
-		taskList.appendChild(el);
-	}
-}
 function countTime(){
 	let sleepingTimeHours = document.getElementById("sleepingHours").value;
 	let sleepingMinutes = document.querySelector(".sleepingMinutes").value;
@@ -97,9 +86,6 @@ function setAvailableTime(freeTime){
 	let m = freeTimeArray[1];
 	document.getElementById("hoursNewTask").setAttribute("max", h);
 }
-function countPaddingInTasks(hours, minutes){
-	return `${Math.floor(hours * 10 + minutes/10)}px`;
-}
 function drawCircle (ctx, x, y, color, size, fill){
 	ctx.arc(x,y, size, 0, Math.PI*2);
 	(fill) ? ctx.fill() : ctx.stroke();
@@ -141,6 +127,15 @@ Ball.prototype.draw = function() {
   ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI);
   ctx.fill();
 }
+function drawTaskInCanvas(){
+	/*
+	for (let i = day.length - 1; i >= 0; i--) {
+		let text = document.createTextNode(`${day[i].name} ${day[i].duration[0]}h ${day[i].duration[1]} m`);
+		let padding = countPaddingInTasks (day[i].duration[0], day[i].duration[1]);
+
+	}*/
+	console.log("need draw new tasks");
+}
 
 btnAddTask.addEventListener('click', function(){
 	let name = document.getElementById('newTaskName').value,
@@ -150,7 +145,7 @@ btnAddTask.addEventListener('click', function(){
 	day.push(newTaskObj);
 	clearTask();
 	countTime();
-	showTasks();
+	drawTaskInCanvas();
 }, false);
 
 btnClear.addEventListener('click', clearTask, false);
