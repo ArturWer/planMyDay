@@ -14,7 +14,7 @@ function Task (name, hours, minutes){
 }
 function clearTask (){
 	document.getElementById('newTaskName').value = "";
-	document.getElementById("hours").value = 0;
+	document.getElementById("hoursNewTask").value = 0;
 	document.querySelector(".minutes").value = 0;
 }
 function showTasks(){
@@ -144,7 +144,7 @@ Ball.prototype.draw = function() {
 
 btnAddTask.addEventListener('click', function(){
 	let name = document.getElementById('newTaskName').value,
-		hours = document.getElementById("hours").value,
+		hours = document.getElementById("hoursNewTask").value,
 		minutes = document.querySelector(".minutes").value;
 	let newTaskObj = new Task(name, hours, minutes);
 	day.push(newTaskObj);
