@@ -128,13 +128,12 @@ Ball.prototype.draw = function() {
   ctx.fill();
 }
 function drawTaskInCanvas(){
-	/*
 	for (let i = day.length - 1; i >= 0; i--) {
-		let text = document.createTextNode(`${day[i].name} ${day[i].duration[0]}h ${day[i].duration[1]} m`);
-		let padding = countPaddingInTasks (day[i].duration[0], day[i].duration[1]);
-
-	}*/
-	console.log("need draw new tasks");
+		let name = day[i].name;
+		let hours = day[i].duration[0];
+		let minutes = day[i].duration[1];
+		console.log(`need draw new tasks NAME: ${day[i].name} ${day[i].duration[0]}h ${day[i].duration[1]} m`);
+	}
 }
 
 btnAddTask.addEventListener('click', function(){
