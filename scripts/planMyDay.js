@@ -8,9 +8,10 @@ let btnAddTask = document.querySelector(".addTask"),
 	day = [];
 const minInDay = 24 * 60;
 
-function Task (name, hours, minutes){
+function Task (name, color, hours, minutes){
 	this.name = name,
 	this.duration = [hours, minutes];
+	this.color = `rgb(${random(0,255)}, ${random(0,255)}, ${random(0,255)})`;
 }
 function clearTask (){
 	document.getElementById('newTaskName').value = "";
@@ -86,7 +87,7 @@ function setAvailableTime(freeTime){
 	let m = freeTimeArray[1];
 	document.getElementById("hoursNewTask").setAttribute("max", h);
 }
-function drawCircle (ctx, x, y, color, size, fill){
+function drawCircle (x, y, color, size, fill){
 	ctx.arc(x,y, size, 0, Math.PI*2);
 	(fill) ? ctx.fill() : ctx.stroke();
 }
@@ -95,19 +96,24 @@ function drawInCanvas(percentSleepTime){
 	if(canvas.getContext) {
 		ctx = canvas.getContext("2d");
 		let minSide,
-		width = canvas.width,
-		height = canvas.height;
+			width = canvas.width,
+			height = canvas.height,
+			totalRectXstart = width*4/5;
 		(width < height) ? minSide = width : minSide = height;
 		ctx.clearRect(0, 0, width, height);
 		ctx.fillStyle = "rgba(255, 255, 255, 1)";
-		ctx.fillRect(width*2/3, 0, width, height);
+		ctx.fillRect(totalRectXstart, 0, width, height);
 		ctx.fill();
-		/* draw sleep time rect*/
+		/* draw sleep time rect */
 		ctx.fillStyle = "gold";
-		ctx.fillRect(width*2/3, (height-height*percentSleepTime/100), width, height);
+		ctx.fillRect(totalRectXstart, (height-height*percentSleepTime/100), width, height);
 		ctx.fill();
+		/* draw task's rect */
+		if (day.length>0) {
+
+		}
 		ctx.moveTo (0, 0);
-		drawCircle (ctx, 40, 60, null, 60, true);
+		drawTaskInCanvas();
 	}
 	else canvas.textContent = "Use modern browser's version";
 }
@@ -132,6 +138,7 @@ function drawTaskInCanvas(){
 		let name = day[i].name;
 		let hours = day[i].duration[0];
 		let minutes = day[i].duration[1];
+		drawCircle (40*i*hours, 60*i*hours, null, 60*i, true);
 		console.log(`need draw new tasks NAME: ${day[i].name} ${day[i].duration[0]}h ${day[i].duration[1]} m`);
 	}
 }
