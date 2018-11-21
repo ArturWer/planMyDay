@@ -90,6 +90,7 @@ function setAvailableTime(minutesFree){
 	document.getElementById("hoursNewTask").setAttribute("max", h);
 }
 function drawCircle (x, y, color, size, fill, ctx){
+	ctx.beginPath();
 	ctx.arc(x,y, size, 0, Math.PI*2);
 	(fill) ? ctx.fill() : ctx.stroke();
 }
@@ -127,6 +128,7 @@ function drawInCanvas(minutesSleep, ctx){
 			ctx.fillStyle = day[i].color;
 			y -= taskHeight;
 			ctx.fillRect (totalRectXstart, y, widthTotal, taskHeight);
+			drawCircle (100+i*taskHeight, y+i, day[i].color, taskHeight, false, ctx);
 		}
 	}
 }
