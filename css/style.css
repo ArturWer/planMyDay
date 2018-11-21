@@ -40,7 +40,7 @@ main .dayShow .taskList p{
 	background-image: linear-gradient(to bottom right, rgba(255, 255, 255, 0.5),rgb(239, 239, 239));
 }
 main .dayShow canvas{
-	background-color: rgba(255,255,255,.5);
+	background-color: rgba(255,255,255, 1);
 }
 main .adding{
 	flex: 1;
