@@ -101,7 +101,8 @@ function drawInCanvas(minutesSleep, ctx){
 		widthTotal = width - totalRectXstart,
 		sleepRectYstart,
 		y,
-		heightSleep;
+		heightSleep,
+		areaRect = totalRectXstart * height;
 
 	let sleepTimePart = minutesSleep/minInDay;
 	console.log(`sleepTimePart ${sleepTimePart}`);
@@ -128,7 +129,11 @@ function drawInCanvas(minutesSleep, ctx){
 			ctx.fillStyle = day[i].color;
 			y -= taskHeight;
 			ctx.fillRect (totalRectXstart, y, widthTotal, taskHeight);
-			drawCircle (100+i*taskHeight, y+i, day[i].color, taskHeight, false, ctx);
+			/* draw circles */
+			let taskCircleArea = areaRect * taskPart;
+			let r = Math.sqrt(taskCircleArea / Math.PI);
+			console.log(r);
+			drawCircle (100+i*taskHeight, y+i, day[i].color, r, false, ctx);
 		}
 	}
 }
