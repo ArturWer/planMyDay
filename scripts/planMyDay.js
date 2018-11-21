@@ -14,7 +14,7 @@ function Task (name, hours, minutes){
 	this.name = name,
 	this.hours = hours, 
 	this.minutes = minutes,
-	this.color = `rgb(${random(0,255)}, 0, ${random(0,255)})`;
+	this.color = `rgb(${random(100,255)}, 0, ${random(100,255)})`;
 }
 function clearTask (){
 	document.getElementById('newTaskName').value = "";
@@ -99,6 +99,7 @@ function drawInCanvas(minutesSleep, ctx){
 		totalRectXstart = width*4/5,
 		widthTotal = width - totalRectXstart,
 		sleepRectYstart,
+		y,
 		heightSleep;
 
 	let sleepTimePart = minutesSleep/minInDay;
@@ -111,15 +112,18 @@ function drawInCanvas(minutesSleep, ctx){
 	ctx.fillStyle = "gold";
 	sleepRectYstart = height-height*sleepTimePart;
 	heightSleep = height - sleepRectYstart;
-	ctx.fillRect(totalRectXstart, sleepRectYstart, widthTotal, heightSleep);
+	y = sleepRectYstart;
+	ctx.fillRect(totalRectXstart, y, widthTotal, heightSleep);
 	/* draw task's rect */
 	if (day.length>0) {
 		for (var i = day.length - 1; i >= 0; i--) {
 			let taskMinutes = convertToMinutes(day[i].hours, day[i].minutes),
-				taskPart = taskMinutes / minInDay;
-			console.log(taskPart);
+				taskPart = taskMinutes / minInDay,
+				startTaskRectY,
+				taskHeight = height * taskPart;
 			ctx.fillStyle = day[i].color;
-			ctx.fillRect (totalRectXstart, 10*i, widthTotal, height * taskPart);
+			y -= taskHeight;
+			ctx.fillRect (totalRectXstart, y, widthTotal, taskHeight);
 		}
 	}
 }
