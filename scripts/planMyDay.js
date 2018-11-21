@@ -14,7 +14,7 @@ function Task (name, hours, minutes){
 	this.name = name,
 	this.hours = hours, 
 	this.minutes = minutes,
-	this.color = `rgb(${random(100,255)}, 0, ${random(100,255)})`;
+	this.color = `rgb(${random(100,255)}, ${random(100,145)}, ${random(100,255)})`;
 }
 function clearTask (){
 	document.getElementById('newTaskName').value = "";
@@ -114,6 +114,9 @@ function drawInCanvas(minutesSleep, ctx){
 	heightSleep = height - sleepRectYstart;
 	y = sleepRectYstart;
 	ctx.fillRect(totalRectXstart, y, widthTotal, heightSleep);
+	ctx.font = "2rem sans-serif";
+	ctx.fillStyle = "black";
+	ctx.fillText("Sleeping", totalRectXstart + 9, y + heightSleep/2 + 9);
 	/* draw task's rect */
 	if (day.length>0) {
 		for (var i = day.length - 1; i >= 0; i--) {
@@ -152,7 +155,7 @@ btnAddTask.addEventListener('click', function(){
 		minutes = document.querySelector(".minutes").value;
 	if (name) {
 		let newTaskObj = new Task(name, hours, minutes);
-		day.push(newTaskObj);
+		day.unshift(newTaskObj);
 		console.log(`NAME: ${name} HOURS: ${hours} MINUTES ${minutes}`);
 		clearTask();
 		countTime();
