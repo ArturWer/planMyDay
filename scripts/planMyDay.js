@@ -91,6 +91,7 @@ function setAvailableTime(minutesFree){
 }
 function drawCircle (x, y, color, size, fill, ctx){
 	ctx.beginPath();
+	ctx.fillStyle = color;
 	ctx.arc(x,y, size, 0, Math.PI*2);
 	(fill) ? ctx.fill() : ctx.stroke();
 }
@@ -133,7 +134,7 @@ function drawInCanvas(minutesSleep, ctx){
 			let taskCircleArea = areaRect * taskPart;
 			let r = Math.sqrt(taskCircleArea / Math.PI);
 			console.log(r);
-			drawCircle (100+i*taskHeight, y+i, day[i].color, r, false, ctx);
+			drawCircle (2*r*(i+1), r*(i+1), day[i].color, r, true, ctx);
 		}
 	}
 }
