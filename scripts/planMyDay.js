@@ -14,7 +14,7 @@ function Task (name, hours, minutes){
 	this.name = name,
 	this.hours = hours, 
 	this.minutes = minutes,
-	this.color = `rgb(${random(0,255)}, ${random(0,255)}, ${random(0,255)})`;
+	this.color = `rgb(${random(0,255)}, 0, ${random(0,255)})`;
 }
 function clearTask (){
 	document.getElementById('newTaskName').value = "";
@@ -97,7 +97,7 @@ function drawInCanvas(minutesSleep, ctx){
 	let width = canvas.width,
 		height = canvas.height,
 		totalRectXstart = width*4/5,
-		widthTotal = width - totalRectXstart;
+		widthTotal = width - totalRectXstart,
 		sleepRectYstart,
 		heightSleep;
 
@@ -111,15 +111,15 @@ function drawInCanvas(minutesSleep, ctx){
 	ctx.fillStyle = "gold";
 	sleepRectYstart = height-height*sleepTimePart;
 	heightSleep = height - sleepRectYstart;
-	console.log(`ctx.fillRect ${ctx.fillRect}`);
 	ctx.fillRect(totalRectXstart, sleepRectYstart, widthTotal, heightSleep);
 	/* draw task's rect */
 	if (day.length>0) {
 		for (var i = day.length - 1; i >= 0; i--) {
-			//drawCircle (40*i*hours, 60*i*hours, null, 60*i, true);
-			console.log(`need draw new tasks NAME: ${day[i].name} ${day[i].hours}h ${day[i].minutes} m`);
+			let taskMinutes = convertToMinutes(day[i].hours, day[i].minutes),
+				taskPart = taskMinutes / minInDay;
+			console.log(taskPart);
 			ctx.fillStyle = day[i].color;
-			ctx.fillRect = (totalRectXstart, 140, widthTotal, heightSleep);
+			ctx.fillRect (totalRectXstart, 10*i, widthTotal, height * taskPart);
 		}
 	}
 }
@@ -150,7 +150,6 @@ btnAddTask.addEventListener('click', function(){
 		let newTaskObj = new Task(name, hours, minutes);
 		day.push(newTaskObj);
 		console.log(`NAME: ${name} HOURS: ${hours} MINUTES ${minutes}`);
-		console.log(`Added new task in array: ${day[day.length-1]}`);
 		clearTask();
 		countTime();
 	}
