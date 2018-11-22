@@ -118,8 +118,9 @@ function drawInCanvas(minutesSleep, ctx){
 	y = sleepRectYstart;
 	ctx.fillRect(totalRectXstart, y, widthTotal, heightSleep);
 	ctx.font = "2rem sans-serif";
+	ctx.textAlign = "left";
 	ctx.fillStyle = "black";
-	ctx.fillText("Sleeping", totalRectXstart + 9, y + heightSleep/2 + 9);
+	ctx.fillText("Sleeping", totalRectXstart+9, y + heightSleep/2 + 9);
 	/* draw task's rect */
 	if (day.length>0) {
 		for (var i = day.length - 1; i >= 0; i--) {
@@ -137,8 +138,9 @@ function drawInCanvas(minutesSleep, ctx){
 			let randomY = random(0+r, height-r);
 			drawCircle (randomX, randomY, day[i].color, r, true, ctx);
 			ctx.font = "1rem";
+			ctx.textAlign = "center";
 			ctx.fillStyle = "white";
-			ctx.fillText(day[i].name, randomX-r*0.8, randomY+8);
+			ctx.fillText(day[i].name, randomX, randomY+8);
 		}
 	}
 }
