@@ -133,8 +133,9 @@ function drawInCanvas(minutesSleep, ctx){
 			/* draw circles */
 			let taskCircleArea = areaRect * taskPart;
 			let r = Math.sqrt(taskCircleArea / Math.PI);
-			console.log(r);
-			drawCircle (2*r*(i+1), r*(i+1), day[i].color, r, true, ctx);
+			let randomX = random(0+r, totalRectXstart-r);
+			let randomY = random(0+r, height-r);
+			drawCircle (randomX, randomY, day[i].color, r, true, ctx);
 		}
 	}
 }
