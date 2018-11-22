@@ -125,7 +125,7 @@ function drawInCanvas(minutesSleep, ctx){
 	if (day.length>0) {
 		for (var i = day.length - 1; i >= 0; i--) {
 			let taskMinutes = convertToMinutes(day[i].hours, day[i].minutes),
-				taskPart = Math.floor(taskMinutes / minInDay),
+				taskPart = taskMinutes / minInDay,
 				startTaskRectY,
 				taskHeight = height * taskPart;
 			ctx.fillStyle = day[i].color;
@@ -143,11 +143,11 @@ function drawInCanvas(minutesSleep, ctx){
 				day[i].randomY = random(0+r, height-r);
 				isCollision = checkCollision(day[i]);
 			}
-			drawCircle (randomX, randomY, day[i].color, r, true, ctx);
+			drawCircle (day[i].randomX, day[i].randomY, day[i].color, r, true, ctx);
 			ctx.font = "1rem";
 			ctx.textAlign = "center";
 			ctx.fillStyle = "white";
-			ctx.fillText(day[i].name, randomX, randomY+8);
+			ctx.fillText(day[i].name, day[i].randomX, day[i].randomY+8);
 		}
 	}
 }
