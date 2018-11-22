@@ -136,6 +136,9 @@ function drawInCanvas(minutesSleep, ctx){
 			let randomX = random(0+r, totalRectXstart-r);
 			let randomY = random(0+r, height-r);
 			drawCircle (randomX, randomY, day[i].color, r, true, ctx);
+			ctx.font = "1rem";
+			ctx.fillStyle = "white";
+			ctx.fillText(day[i].name, randomX-r*0.8, randomY+8);
 		}
 	}
 }
