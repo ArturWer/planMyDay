@@ -98,7 +98,7 @@ function drawCircle (x, y, color, size, fill, ctx){
 function drawInCanvas(minutesSleep, ctx){
 	let width = canvas.width,
 		height = canvas.height,
-		totalRectXstart = width*4/5,
+		totalRectXstart = Math.floor(width*4/5),
 		widthTotal = width - totalRectXstart,
 		sleepRectYstart,
 		y,
@@ -113,7 +113,7 @@ function drawInCanvas(minutesSleep, ctx){
 	ctx.strokeRect(totalRectXstart, 0, widthTotal, height);
 	/* draw sleep time rect */
 	ctx.fillStyle = "gold";
-	sleepRectYstart = height-height*sleepTimePart;
+	sleepRectYstart = Math.floor(height-height*sleepTimePart);
 	heightSleep = height - sleepRectYstart;
 	y = sleepRectYstart;
 	ctx.fillRect(totalRectXstart, y, widthTotal, heightSleep);
@@ -125,7 +125,7 @@ function drawInCanvas(minutesSleep, ctx){
 	if (day.length>0) {
 		for (var i = day.length - 1; i >= 0; i--) {
 			let taskMinutes = convertToMinutes(day[i].hours, day[i].minutes),
-				taskPart = taskMinutes / minInDay,
+				taskPart = Math.floor(taskMinutes / minInDay),
 				startTaskRectY,
 				taskHeight = height * taskPart;
 			ctx.fillStyle = day[i].color;
@@ -133,9 +133,16 @@ function drawInCanvas(minutesSleep, ctx){
 			ctx.fillRect (totalRectXstart, y, widthTotal, taskHeight);
 			/* draw circles */
 			let taskCircleArea = areaRect * taskPart;
-			let r = Math.sqrt(taskCircleArea / Math.PI);
-			let randomX = random(0+r, totalRectXstart-r);
-			let randomY = random(0+r, height-r);
+			let r = Math.floor(Math.sqrt(taskCircleArea / Math.PI));
+			day[i].r = r;
+			day[i].randomX = random(0+r, totalRectXstart-r);
+			day[i].randomY = random(0+r, height-r);
+			let isCollision = checkCollision(day[i]);
+			while (isCollision){
+				day[i].randomX = random(0+r, totalRectXstart-r);
+				day[i].randomY = random(0+r, height-r);
+				isCollision = checkCollision(day[i]);
+			}
 			drawCircle (randomX, randomY, day[i].color, r, true, ctx);
 			ctx.font = "1rem";
 			ctx.textAlign = "center";
@@ -147,6 +154,24 @@ function drawInCanvas(minutesSleep, ctx){
 function random(min,max) {
   var num = Math.floor(Math.random()*(max-min)) + min;
   return num;
+}
+function checkCollision(task){
+	for (var j = day.length - 1; j >= 0; j--) {
+		if (day[j] !== task) {
+			if ((day[j].randomX === task.randomX) && (day[j].randomY === task.randomY)) {
+				console.log('Is collision. Need to change new random points x and y');
+				return true;
+			}
+			let dx = day[j].randomX - task.randomX;
+			let dy = day[j].randomY - task.randomY;
+			let hypotenuse = Math.sqrt(dx * dx + dy * dy);
+			if ((day[j].r + task.r) > hypotenuse) {
+				console.log('Is collision. Need to change new random points x and y');
+				return true;
+			}
+		}
+	}
+	return false;
 }
 function Ball(x, y, color, size) {
   this.x = x;
