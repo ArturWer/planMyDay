@@ -143,6 +143,7 @@ function drawInCanvas(minutesSleep, ctx){
 			/* draw circles */
 			let taskCircleArea = areaRect * taskPart;
 			let r = Math.floor(Math.sqrt(taskCircleArea / Math.PI));
+			if (r*4>height) r = height/4;
 			day[i].r = r;
 			day[i].randomX = random(0+r, totalRectXstart-r);
 			day[i].randomY = random(0+r, height-r);
@@ -151,12 +152,12 @@ function drawInCanvas(minutesSleep, ctx){
 			while (isCollision){
 				day[i].randomX = random(0+r, totalRectXstart-r);
 				day[i].randomY = random(0+r, height-r);
-				if (countCollision<100) {
+				if (countCollision<10000) {
 					isCollision = checkCollision(day[i]);
 					countCollision++;
 				} else {
 					console.log(`Can't to choose a free place more than ${countCollision} times`);
-					break;
+					//day.r = day.r*0.5;
 				}
 			}
 			drawCircle (day[i].randomX, day[i].randomY, day[i].color, r, true, ctx);
@@ -182,7 +183,6 @@ function checkCollision(task){
 			let dy = day[j].randomY - task.randomY;
 			let hypotenuse = Math.sqrt(dx * dx + dy * dy);
 			if ((day[j].r + task.r) > hypotenuse) {
-				console.log('Is collision. Need to change new random points x and y');
 				return true;
 			}
 		}
