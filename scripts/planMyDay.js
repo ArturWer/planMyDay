@@ -14,7 +14,7 @@ function Task (name, hours, minutes){
 	this.name = name,
 	this.hours = hours, 
 	this.minutes = minutes,
-	this.color = `rgba(${random(200,255)}, ${random(0,255)}, ${random(200,255)}, ${random(0.8, 1)})`;
+	this.color = `rgba(${random(0,150)}, ${random(0,150)}, ${random(200,255)}, ${random(0.8, 1)})`;
 }
 function clearTask (){
 	document.getElementById('newTaskName').value = "";
@@ -162,10 +162,12 @@ function drawInCanvas(minutesSleep, ctx){
 				countCollision++;
 			}
 			drawCircle (day[i].randomX, day[i].randomY, day[i].color, r, true, ctx);
-			ctx.font = "1rem";
+			ctx.font = "1.5rem sans-serif";
 			ctx.textAlign = "center";
 			ctx.fillStyle = "white";
-			ctx.fillText(day[i].name, day[i].randomX, day[i].randomY+8);
+			ctx.fillText(day[i].name, day[i].randomX, day[i].randomY);
+			ctx.font = "1rem sans-serif";
+			ctx.fillText(`${day[i].hours} h ${day[i].minutes} m`, day[i].randomX, day[i].randomY+30);
 		}
 	}
 }
