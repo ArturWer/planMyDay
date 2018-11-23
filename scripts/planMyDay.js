@@ -31,16 +31,15 @@ function countTime(){
 		correctMinutesChanging (sleepingMinutes);
 	if (minutesSleep) {
 		let minutesFree = minInDay - minutesSleep;
-		setAvailableTime(minutesFree);
 		if (day.length>0) {//if is user's tasks
 			let minutesDaySum = 0;
 			for (var i = day.length - 1; i >= 0; i--) {
 				minutesDaySum += convertToMinutes(day[i].hours, day[i].minutes);
-				drawTasks(i);
 			}
 			minutesFree -= minutesDaySum;
 		}
-		let minutesFreeArray = converToHoursAndMinutes(minutesFree);
+		setAvailableTime(minutesFree);
+		let minutesFreeArray = convertToHoursAndMinutes(minutesFree);
 		let msg = `${minutesFreeArray[0]} h ${minutesFreeArray[1]} m`;
 		document.querySelector(".dayShow h2 span").textContent = msg;
 		drawInCanvas(minutesSleep, ctx);
@@ -73,7 +72,7 @@ function convertToMinutes(hours, minutes){
 	}
 	return false;
 }
-function converToHoursAndMinutes (minutes){
+function convertToHoursAndMinutes (minutes){
 	if(!isNaN(minutes)){
 		let t = [];
 		t[0] = Math.floor(minutes/60);
@@ -83,8 +82,8 @@ function converToHoursAndMinutes (minutes){
 	return false;
 }
 function setAvailableTime(minutesFree){
-	console.log(`MinutesFree ${minutesFree} minutes`);
-	let minutesFreeArray = converToHoursAndMinutes(minutesFree);
+	console.log(`You have available for planning ${minutesFree} minutes`);
+	let minutesFreeArray = convertToHoursAndMinutes(minutesFree);
 	let h = minutesFreeArray[0];
 	let m = minutesFreeArray[1];
 	document.getElementById("hoursNewTask").setAttribute("max", h);
@@ -138,10 +137,17 @@ function drawInCanvas(minutesSleep, ctx){
 			day[i].randomX = random(0+r, totalRectXstart-r);
 			day[i].randomY = random(0+r, height-r);
 			let isCollision = checkCollision(day[i]);
+			let countCollision = 0;
 			while (isCollision){
 				day[i].randomX = random(0+r, totalRectXstart-r);
 				day[i].randomY = random(0+r, height-r);
-				isCollision = checkCollision(day[i]);
+				if (countCollision<100) {
+					isCollision = checkCollision(day[i]);
+					countCollision++;
+				} else {
+					console.log(`Can't to choose a free place more than ${countCollision} times`);
+					break;
+				}
 			}
 			drawCircle (day[i].randomX, day[i].randomY, day[i].color, r, true, ctx);
 			ctx.font = "1rem";
@@ -172,21 +178,6 @@ function checkCollision(task){
 		}
 	}
 	return false;
-}
-function Ball(x, y, color, size) {
-  this.x = x;
-  this.y = y;
-  this.color = color;
-  this.size = size;
-}
-Ball.prototype.draw = function() {
-  ctx.beginPath();
-  ctx.fillStyle = this.color;
-  ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI);
-  ctx.fill();
-}
-function drawTasks (i){
-	console.log(`day[${i}]: ${day[i]}`);
 }
 btnAddTask.addEventListener('click', function(){
 	let name = document.getElementById('newTaskName').value,
