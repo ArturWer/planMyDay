@@ -14,7 +14,7 @@ function Task (name, hours, minutes){
 	this.name = name,
 	this.hours = hours, 
 	this.minutes = minutes,
-	this.color = `rgba(${random(0,255)}, ${random(0,155)}, ${random(0,155)}, ${random(0.7, 1)})`;
+	this.color = `rgba(${random(200,255)}, ${random(0,255)}, ${random(200,255)}, ${random(0.8, 1)})`;
 }
 function clearTask (){
 	document.getElementById('newTaskName').value = "";
@@ -116,7 +116,12 @@ function drawInCanvas(minutesSleep, ctx){
 
 	let sleepTimePart = minutesSleep/minInDay;
 	console.log(`sleepTimePart ${sleepTimePart}`);
-
+	/* shadows */
+	ctx.shadowOffsetX = 2;
+    ctx.shadowOffsetY = -2;
+    ctx.shadowBlur = 5;
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.5)';
+    /* draw a total rectangle */
 	ctx.clearRect(0, 0, width, height);
 	ctx.strokeStyle = "purple";
 	ctx.strokeRect(totalRectXstart, 0, widthTotal, height);
@@ -128,7 +133,7 @@ function drawInCanvas(minutesSleep, ctx){
 	ctx.fillRect(totalRectXstart, y, widthTotal, heightSleep);
 	ctx.font = "2rem sans-serif";
 	ctx.textAlign = "left";
-	ctx.fillStyle = "black";
+	ctx.fillStyle = "white";
 	ctx.fillText("Sleeping", totalRectXstart+9, y + heightSleep/2 + 9);
 	/* draw task's rect */
 	if (day.length>0) {
