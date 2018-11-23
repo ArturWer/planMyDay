@@ -14,7 +14,7 @@ function Task (name, hours, minutes){
 	this.name = name,
 	this.hours = hours, 
 	this.minutes = minutes,
-	this.color = `rgb(${random(100,255)}, ${random(100,145)}, ${random(100,255)})`;
+	this.color = `rgba(${random(0,255)}, ${random(0,155)}, ${random(0,155)}, ${random(0.7, 1)})`;
 }
 function clearTask (){
 	document.getElementById('newTaskName').value = "";
@@ -149,16 +149,12 @@ function drawInCanvas(minutesSleep, ctx){
 			day[i].randomY = random(0+r, height-r);
 			let isCollision = checkCollision(day[i]);
 			let countCollision = 0;
-			while (isCollision){
+			let limCollision = 100000;
+			while (isCollision && (countCollision < limCollision)){
 				day[i].randomX = random(0+r, totalRectXstart-r);
 				day[i].randomY = random(0+r, height-r);
-				if (countCollision<10000) {
-					isCollision = checkCollision(day[i]);
-					countCollision++;
-				} else {
-					console.log(`Can't to choose a free place more than ${countCollision} times`);
-					//day.r = day.r*0.5;
-				}
+				isCollision = checkCollision(day[i]);
+				countCollision++;
 			}
 			drawCircle (day[i].randomX, day[i].randomY, day[i].color, r, true, ctx);
 			ctx.font = "1rem";
