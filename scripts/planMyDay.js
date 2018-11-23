@@ -82,11 +82,14 @@ function convertToHoursAndMinutes (minutes){
 	return false;
 }
 function setAvailableTime(minutesFree){
-	console.log(`You have available for planning ${minutesFree} minutes`);
 	let minutesFreeArray = convertToHoursAndMinutes(minutesFree);
 	let h = minutesFreeArray[0];
 	let m = minutesFreeArray[1];
 	document.getElementById("hoursNewTask").setAttribute("max", h);
+	console.log(`You have available for planning ${minutesFree} minutes`);
+	if (minutesFree <= 0) {
+		btnAddTask.setAttribute("disabled", true);
+	} else btnAddTask.removeAttribute("disabled");
 }
 function drawCircle (x, y, color, size, fill, ctx){
 	ctx.beginPath();
