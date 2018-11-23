@@ -21,6 +21,13 @@ function clearTask (){
 	document.getElementById("hoursNewTask").value = 0;
 	document.querySelector(".minutes").value = 0;
 }
+function reset(){
+	clearTask();
+	document.getElementById("sleepingHours").value = 8;
+	document.querySelector(".sleepingMinutes").value = 0;
+	day = [];
+	countTime();
+}
 function countTime(){
 	let sleepingTimeHours = document.getElementById("sleepingHours").value;
 	let sleepingMinutes = document.querySelector(".sleepingMinutes").value;
