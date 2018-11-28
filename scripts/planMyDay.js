@@ -1,11 +1,21 @@
-let btnAddTask = document.querySelector(".addTask"),
+/* setup window's size*/
+let body = document.querySelector("body"),
+	main = document.querySelector("main"),
+	canvas = document.querySelector("canvas"),
+	WIDTH = window.innerWidth,
+	HEIGHT = window.innerHeight;
+
+	body.style.width = `${WIDTH}px`;
+	canvas.style.width = `${WIDTH*0.66}px`;
+	canvas.style.height = `${canvas.style.width/16*8}px`;
+
+let	btnAddTask = document.querySelector(".addTask"),
 	btnClear = document.querySelector(".clearButton"),
 	newTasksField = document.querySelector(".newTasks"),
 	dayShow = document.querySelector(".dayShow"),
 	taskList = document.querySelector(".taskList"),
 	sleepingHours = document.getElementById("sleepingHours"),
 	sleepingMinutes = document.querySelector(".sleepingMinutes"),
-	canvas = document.querySelector("canvas"),
 	ctx = canvas.getContext("2d"),
 	day = [];
 const minInDay = 24 * 60;
