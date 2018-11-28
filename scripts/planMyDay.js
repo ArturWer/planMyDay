@@ -20,8 +20,9 @@ function setSizes(){
 	WIDTH = window.innerWidth;
 	HEIGHT = window.innerHeight;
 	body.style.width = `${WIDTH}px`;
-	canvas.style.width = `${WIDTH*0.66}px`;
-	canvas.style.height = `${WIDTH*0.66/16*9}px`;
+	canvas.setAttribute("width", `${Math.floor(WIDTH*0.66)}px`);
+	canvas.setAttribute("height", `${Math.floor(WIDTH*0.66/16*9)}px`);
+	countTime();
 };
 
 function Task (name, hours, minutes){
@@ -224,8 +225,6 @@ btnClear.addEventListener('click', clearTask, false);
 
 sleepingHours.oninput = countTime;
 sleepingMinutes.oninput = countTime;
-
-countTime();
 
 window.onresize = setSizes;
 
