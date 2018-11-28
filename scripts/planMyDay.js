@@ -5,10 +5,6 @@ let body = document.querySelector("body"),
 	WIDTH = window.innerWidth,
 	HEIGHT = window.innerHeight;
 
-	body.style.width = `${WIDTH}px`;
-	canvas.style.width = `${WIDTH*0.66}px`;
-	canvas.style.height = `${canvas.style.width/16*8}px`;
-
 let	btnAddTask = document.querySelector(".addTask"),
 	btnClear = document.querySelector(".clearButton"),
 	newTasksField = document.querySelector(".newTasks"),
@@ -19,6 +15,14 @@ let	btnAddTask = document.querySelector(".addTask"),
 	ctx = canvas.getContext("2d"),
 	day = [];
 const minInDay = 24 * 60;
+
+function setSizes(){
+	WIDTH = window.innerWidth;
+	HEIGHT = window.innerHeight;
+	body.style.width = `${WIDTH}px`;
+	canvas.style.width = `${WIDTH*0.66}px`;
+	canvas.style.height = `${WIDTH*0.66/16*9}px`;
+};
 
 function Task (name, hours, minutes){
 	this.name = name,
@@ -215,11 +219,14 @@ btnAddTask.addEventListener('click', function(){
 	}
 }, false);
 
+setSizes();
 btnClear.addEventListener('click', clearTask, false);
 
 sleepingHours.oninput = countTime;
 sleepingMinutes.oninput = countTime;
 
 countTime();
+
+window.onresize = setSizes;
 
 
